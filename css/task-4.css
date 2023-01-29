@@ -107,10 +107,6 @@ body {
 .inner-one {
   width: 70%;
   height: 70%;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .inner-one h2,
 .inner-four h2 {
@@ -119,10 +115,6 @@ body {
 .inner-two {
   width: 90%;
   height: 90%;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #fff;
 }
 .inner-two h2 {
@@ -131,15 +123,16 @@ body {
 .inner-three {
   width: 90%;
   height: 90%;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #ff7262;
 }
 .inner-four {
   width: 70%;
   height: 70%;
+}
+.inner-three,
+.inner-four,
+.inner-two,
+.inner-one {
   border-radius: 50%;
   display: flex;
   justify-content: center;
