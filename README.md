@@ -1,15 +1,19 @@
 # betasquirrel-tasks
 
-Assignments from _betasquirrel_
+Assignments from betasquirrel
 
----
-
-~~Requirements~~ are listed below.
+## Requirements
 
 | Requirements                  | Output |
 | ----------------------------- | ------ |
 | ![Task 1](images/task-1.jpeg) | Two    |
-| ![Task 1](images/task-2.png)  | Two    |
+| ![Task 2](images/task-2.png)  | Two    |
+
+### Formatting
+
+Laboris **exercitation dolor cupidatat mollit anim ex** non _culpa aliqua_ labore eiusmod fugiat. Aliqua quis sit nulla ~~nostrud occaecat~~ velit cillum voluptate id. Elit est do adipisicing nisi adipisicing fugiat tempor fugiat consectetur. Consectetur reprehenderit in dolor et anim. Quis qui ea culpa aliqua sit cillum adipisicing Lorem.
+
+`git commit`
 
 ## Linux Commands
 
