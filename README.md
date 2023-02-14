@@ -49,6 +49,7 @@ Laboris **exercitation dolor cupidatat mollit anim ex** non _culpa aliqua_ labor
 8. `git status` - to see the current changes as list
 9. `git diff` - see the changes on each file
 10. `git log` - see commit history
+11. `git init` - initialize git repo on a directory
 
 ## Reading Tasks
 
