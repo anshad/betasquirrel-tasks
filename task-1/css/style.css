@@ -54,3 +54,28 @@ body {
 .boxes:last-child {
   margin-right: 0;
 }
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+  #menu-container {
+    display: none;
+  }
+  .boxes {
+    width: calc(100% - 30px);
+    margin: 0 0 15px 0;
+  }
+}
+/* Tablet */
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .boxes {
+    width: calc(100% - 30px);
+    margin: 0 0 15px 0;
+  }
+  .boxes:nth-child(2),
+  .boxes:nth-child(3) {
+    width: calc((100% - 75px) / 2);
+  }
+  .boxes:nth-child(2) {
+    margin-right: 15px;
+  }
+}

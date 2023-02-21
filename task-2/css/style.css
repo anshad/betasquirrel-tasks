@@ -61,3 +61,19 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
+@media only screen and (max-width: 767px) {
+  #menu-container {
+    display: none;
+  }
+  .box {
+    width: calc(100% - 30px);
+    margin-bottom: 15px;
+  }
+  .box:last-child {
+    margin-bottom: 0;
+  }
+  #main-container {
+    display: block;
+    height: auto;
+  }
+}
