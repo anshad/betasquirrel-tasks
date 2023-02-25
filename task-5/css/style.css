@@ -62,6 +62,7 @@ nav a {
   height: 100%;
   width: calc(100% - 362px);
   padding: 15px;
+  overflow-y: auto;
 }
 .heading {
   display: flex;
@@ -89,11 +90,17 @@ table {
   width: 100%;
   margin-top: 15px;
 }
-table,
-th,
-td {
+table.list-table,
+.list-table th,
+.list-table td {
   border: 2px solid #555;
   border-collapse: collapse;
+}
+table.colored-table {
+  border-collapse: collapse;
+}
+.colored-table tr {
+  border-bottom: 2px solid #555 !important;
 }
 th {
   text-transform: uppercase;
@@ -107,4 +114,30 @@ td:first-child {
 td,
 th {
   padding: 15px;
+}
+caption {
+  padding-bottom: 15px;
+  font-size: 24px;
+  text-decoration: underline;
+}
+.list-table th:first-child,
+.list-table td:first-child {
+  width: auto;
+}
+.colored-table tr:nth-child(odd) {
+  background-color: greenyellow;
+}
+.list-table tr:hover {
+  background-color: #3cb989;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 767px) {
+  .sidebar {
+    display: none;
+  }
+  .content {
+    width: calc(100% - 30px);
+    overflow-x: auto;
+  }
 }
