@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="images/site.webmanifest" />
+    <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Task 5</title>
+    <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo-container">
+        <img src="images/figma.svg" alt="logo" />
+        <h3>One School</h3>
+      </div>
+      <div class="profile-container">
+        <img src="images/profile.jpeg" alt="profile" />
+      </div>
+    </div>
+    <div class="container">
+      <div class="sidebar">
+        <nav>
+          <a href="index.html" class="flex">
+            <i class="fa-solid fa-user"></i>
+            <span>Students</span>
+          </a>
+          <a href="#" class="flex">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Staff</span>
+          </a>
+          <a href="#" class="flex">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Exams</span>
+          </a>
+        </nav>
+      </div>
+      <div class="content">
+        <div class="heading">
+          <h2><u>Student Registration</u></h2>
+        </div>
+        <div class="form-container">
+          <form>
+            <div class="row-container">
+              <div class="input-container">
+                <label for="first_name"
+                  >First Name <span class="red-text">*</span> :</label
+                >
+                <input
+                  type="text"
+                  name="first_name"
+                  id="first_name"
+                  placeholder="Enter your first name"
+                  value="John Doe"
+                />
+              </div>
+              <div class="input-container">
+                <label for="last_name"
+                  >Last Name <span class="red-text">*</span> :</label
+                >
+                <input
+                  type="text"
+                  name="last_name"
+                  id="last_name"
+                  placeholder="Enter your last name"
+                />
+              </div>
+            </div>
+            <div class="row-container">
+              <div class="input-container">
+                <label for="mobile"
+                  >Mobile <span class="red-text">*</span> :</label
+                >
+                <input
+                  type="tel"
+                  name="mobile"
+                  id="mobile"
+                  placeholder="Enter your mobile number"
+                />
+              </div>
+              <div class="input-container">
+                <label for="email"
+                  >Email <span class="red-text">*</span> :</label
+                >
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Enter your email address"
+                />
+              </div>
+            </div>
+            <div class="row-container">
+              <div class="input-container">
+                <label for="branch">Branch :</label>
+                <select name="branch" id="branch">
+                  <option>Select branch you like</option>
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Mechanical">Mechanical</option>
+                </select>
+              </div>
+              <div class="input-container">
+                <label>Do you need hostel facility :</label>
+                <label class="wrapper">
+                  <input type="radio" name="hostel_facility" />
+                  Yes
+                </label>
+                <label class="wrapper">
+                  <input type="radio" name="hostel_facility" />
+                  No
+                </label>
+              </div>
+            </div>
+            <div class="row-container">
+              <div class="input-container">
+                <label>Choose Additional Subjects: </label>
+                <label class="wrapper check-wrapper">
+                  <input
+                    type="checkbox"
+                    name="additional_subjects"
+                    value="Cyber Security"
+                  />
+                  Cyber Security
+                </label>
+                <label class="wrapper check-wrapper">
+                  <input
+                    type="checkbox"
+                    name="additional_subjects"
+                    value="Artificial Intelligence"
+                  />
+                  Artificial Intelligence
+                </label>
+                <label class="wrapper check-wrapper">
+                  <input
+                    type="checkbox"
+                    name="additional_subjects"
+                    value="Blockchain"
+                  />
+                  Blockchain
+                </label>
+                <label class="wrapper check-wrapper">
+                  <input
+                    type="checkbox"
+                    name="additional_subjects"
+                    value="IoT"
+                  />
+                  IoT
+                </label>
+                <label class="wrapper check-wrapper">
+                  <input
+                    type="checkbox"
+                    name="additional_subjects"
+                    value="Robotics"
+                  />
+                  Robotics
+                </label>
+              </div>
+            </div>
+            <div class="row-container">
+              <div class="input-container">
+                <label for="address"
+                  >Permanent Address <span class="red-text">*</span> :</label
+                >
+                <textarea
+                  name="address"
+                  id="address"
+                  rows="5"
+                  placeholder="Enter Address"
+                ></textarea>
+              </div>
+            </div>
+            <div class="row-container right">
+              <input type="reset" value="CLEAR" />
+              <input type="submit" value="SUBMIT" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
