@@ -145,7 +145,14 @@ caption {
   display: flex;
   align-items: center;
 }
-nav img {
+nav img,
+nav i {
   height: 25px;
   margin-right: 15px;
+}
+
+nav i {
+  vertical-align: middle;
+  line-height: 27px !important;
+  color: #1abcfe;
 }
