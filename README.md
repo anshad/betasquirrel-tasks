@@ -18,7 +18,8 @@ Assignments from betasquirrel
 | ----------------------------- | ----------------------------------- |
 | ![Task 1](images/task-1.jpeg) | ![Task 1](images/task-1-output.png) |
 | ![Task 2](images/task-2.png)  | ![Task 2](images/task-2-output.png) |
-| ![Task 4](images/task-4.jpeg) | ![Task 4](images/task-4-output.png) |
+| ![Task 3](images/task-3.jpeg) | ![Task 3](images/task-3-output.png) |
+| ![Task 4](images/task-4.png)  | ![Task 3](images/task-4.png)        |
 
 ### Text Formatting
 
@@ -107,3 +108,15 @@ Read the below pages and attend the tests, then upload test result screenshot on
 
 - mobile `@media only screen and (max-width: 767px) {}`
 - tablet `@media only screen and (max-width: 991px) and (min-width: 768px) {}`
+
+# Input Types
+
+- text
+- email
+- tel
+- radio
+- checkbox
+- submit
+- reset
+- color
+- url
