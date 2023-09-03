@@ -4,7 +4,7 @@ const StringDecoder = require('string_decoder').StringDecoder;
 const getStudents = require('./student');
 const getStaffs = require('./staff');
 
-const port = 3000;
+const port = 4000;
 
 const routes = {
   student: getStudents,
@@ -55,19 +55,23 @@ const server = http.createServer((req, res) => {
       body,
     };
 
-    routeHandler(requestObject, (statusCode, responseObject) => {
+    const callbackFunction = (statusCode, responseObject) => {
       statusCode = typeof statusCode === 'number' ? statusCode : 200;
       responseObject =
         typeof responseObject === 'object'
           ? responseObject
           : { message: '', data: null };
+
+      res.setHeader('Access-Control-Allow-Origin', '*');
       // Set content type to response
       res.setHeader('Content-Type', 'application/json');
       // Set status code to response
       res.writeHead(statusCode);
       // Return response
       res.end(JSON.stringify(responseObject));
-    });
+    };
+
+    routeHandler(requestObject, callbackFunction);
   });
 });
 
