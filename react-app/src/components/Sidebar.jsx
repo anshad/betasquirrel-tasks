@@ -16,7 +16,7 @@ const Sidebar = () => {
           <FontAwesomeIcon icon={faHouse} />
           <span className="d-none d-md-inline">Dashboard</span>
         </Nav.Link>
-        <Nav.Link href="/students">
+        <Nav.Link href="/student">
           <FontAwesomeIcon icon={faUserGraduate} />
           <span className="d-none d-md-inline">Students</span>
         </Nav.Link>
@@ -24,7 +24,7 @@ const Sidebar = () => {
           <FontAwesomeIcon icon={faUserTie} />
           <span className="d-none d-md-inline">Staff</span>
         </Nav.Link>
-        <Nav.Link href="/accounts">
+        <Nav.Link href="/account">
           <FontAwesomeIcon icon={faFileInvoiceDollar} />
           <span className="d-none d-md-inline">Accounts</span>
         </Nav.Link>
