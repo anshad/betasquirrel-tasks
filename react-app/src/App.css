@@ -21,6 +21,12 @@
 .sidebar .nav-link span {
   padding-left: var(--space);
 }
+.sidebar .nav-link svg {
+  width: 30px;
+}
+.navbar-brand img {
+  margin-right: var(--space);
+}
 @media (max-width: 767px) {
   .sidebar {
     width: 50px;

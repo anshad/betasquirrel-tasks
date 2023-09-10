@@ -1,13 +1,14 @@
 import AppNavbar from "../components/AppNavbar";
 import Sidebar from "../components/Sidebar";
+import { Container } from "react-bootstrap";
 
-function Main(props) {
+function Main({ children }) {
   return (
     <>
       <AppNavbar />
       <div className="d-flex">
         <Sidebar />
-        <div className="container-fluid">{props.children}</div>
+        <Container fluid>{children}</Container>
       </div>
     </>
   );
