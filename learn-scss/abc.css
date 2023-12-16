@@ -1,0 +1,40 @@
+.blue-button {
+  background-color: purple;
+}
+
+.btn-success {
+  padding: 10px;
+  border: 2px solid purple;
+}
+
+.btn-success {
+  background-color: green;
+}
+
+.container {
+  color: #333;
+}
+.container p {
+  text-decoration: underline;
+}
+
+p {
+  color: #333;
+  font-weight: 600;
+  border: 1px solid purple;
+  text-decoration: underline;
+}
+
+span {
+  color: #333;
+  font-weight: 600;
+  border: 1px solid purple;
+}
+
+button {
+  color: #333;
+  font-weight: 600;
+  border: 1px solid purple;
+}
+
+/*# sourceMappingURL=abc.css.map */
