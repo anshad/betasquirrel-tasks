@@ -1,3 +1,6 @@
+<?php
+error_reporting(E_ERROR | E_PARSE);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,26 +42,25 @@
                     require_once('database/Database.php');
                     require_once('model/Employee.php');
 
-                    $database = new OneHRMS\database\Database();
-                    $db = $database->connect();
+                    $db = OneHRMS\database\Database::connect();
 
                     $employee = new OneHRMS\model\Employee($db);
                     $result = $employee->listAll();
 
                     if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
+                        while ($row = $result->fetch_object()) {
                             echo "<tr>";
-                            echo "<td>" . $row['id'] . "</td>";
-                            echo "<td>" . $row['first_name'] . "</td>";
-                            echo "<td>" . $row['last_name'] . "</td>";
-                            echo "<td>" . $row['email'] . "</td>";
-                            echo "<td>" . $row['salary'] . "</td>";
-                            echo "<td>" . $row['department'] . "</td>";
+                            echo "<td>" . $row->id . "</td>";
+                            echo "<td>" . $row->first_name . "</td>";
+                            echo "<td>" . $row->last_name . "</td>";
+                            echo "<td>" . $row->email . "</td>";
+                            echo "<td>" . $row->salary . "</td>";
+                            echo "<td>" . $row->department . "</td>";
                             echo "<td class='text-end'>
-                                <a href='add-employee.php?id=" . $row['id'] . "' class='btn btn-warning btn-sm'>
+                                <a href='add-employee.php?id=" . $row->id . "' class='btn btn-warning btn-sm'>
                                 Edit
                                 </a>
-                                <a href='delete-employee.php?id=" . $row['id'] . "' class='btn btn-danger btn-sm' onclick='return confirmDelete()'>Delete</a>
+                                <a href='delete-employee.php?id=" . $row->id . "' class='btn btn-danger btn-sm' onclick='return confirmDelete()'>Delete</a>
                             </td>";
                             echo "</tr>";
                         }
@@ -68,7 +70,7 @@
                         </tr>";
                     }
 
-                    $db->close();
+                    OneHRMS\database\Database::close();
                     ?>
                 </tbody>
             </table>

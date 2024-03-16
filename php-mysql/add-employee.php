@@ -1,9 +1,8 @@
 <?php
-include_once 'database/Database.php';
-include_once 'model/Employee.php';
+require_once 'database/Database.php';
+require_once 'model/Employee.php';
 
-$database = new OneHRMS\Database\Database();
-$db = $database->connect();
+$db = OneHRMS\database\Database::connect();
 
 $employee = new OneHRMS\model\Employee($db);
 $errors = [];
@@ -144,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <?php
-    $db->close();
+    OneHRMS\database\Database::close();
     include_once('partials/footer.php');
     ?>
 </body>

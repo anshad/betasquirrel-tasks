@@ -6,21 +6,29 @@ use mysqli;
 
 class Database
 {
-    private $host = "127.0.0.1";
-    private $dbName = 'one-hrms';
-    private $username = "root";
-    private $password = "root";
-    private $conn;
+    private static $host = "127.0.0.1";
+    private static $dbName = 'one-hrms';
+    private static $username = "root";
+    private static $password = "root";
+    private static $conn;
 
-    public function connect()
+    public static function connect()
     {
-        $this->conn = null;
-        $this->conn = new mysqli($this->host, $this->username, $this->password, $this->dbName);
+        self::$conn = null;
+        self::$conn = new mysqli(self::$host, self::$username, self::$password, self::$dbName);
 
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
+        if (self::$conn->connect_error) {
+            die("Connection failed: " . self::$conn->connect_error);
         }
 
-        return $this->conn;
+        return self::$conn;
+    }
+
+    public static function close()
+    {
+        if (self::$conn !== null) {
+            self::$conn->close();
+            self::$conn = null;
+        }
     }
 }
