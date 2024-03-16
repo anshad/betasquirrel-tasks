@@ -2,14 +2,13 @@
     <div class="container-fluid">
         <!-- logo -->
         <a class="navbar-brand" href="index.php">
-            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="25" height="25" class="d-inline-block align-text-top">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
             One HRMS
         </a>
-
+        <!-- hamburger -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#profileCollapse" aria-controls="profileCollapse" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <!-- dropdown -->
         <div class="collapse navbar-collapse justify-content-end" id="profileCollapse">
             <ul class="navbar-nav">

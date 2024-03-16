@@ -1,9 +1,9 @@
 <?php
-include_once 'Database/Database.php';
-include_once 'Model/Employee.php';
+include_once 'database/Database.php';
+include_once 'model/Employee.php';
 
-use OneHRMS\Database\Database;
-use OneHRMS\Model\Employee;
+use OneHRMS\database\Database;
+use OneHRMS\model\Employee;
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $database = new Database();
@@ -13,6 +13,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
 
     if ($employee->delete($id)) {
+        $db->close();
         header("Location: index.php");
         exit;
     } else {

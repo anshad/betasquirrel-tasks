@@ -1,13 +1,17 @@
-<?php include_once('partials/header.php'); ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One HRMS | Employees</title>
+    <?php include_once('partials/header.php'); ?>
+</head>
 
 <body>
-    <?php
-    include_once('partials/navbar.php');
-    ?>
+    <?php include_once('partials/navbar.php'); ?>
     <div class="d-flex">
-        <?php
-        include_once('partials/sidebar.php');
-        ?>
+        <?php include_once('partials/sidebar.php'); ?>
         <div class="container-fluid main-content">
             <div class="row">
                 <div class="col mt-3">
@@ -32,14 +36,13 @@
                 </thead>
                 <tbody>
                     <?php
-                    include_once 'Database/Database.php';
-                    include_once 'Model/Employee.php';
+                    require_once('database/Database.php');
+                    require_once('model/Employee.php');
 
                     $database = new OneHRMS\database\Database();
                     $db = $database->connect();
 
-                    $employee = new OneHRMS\Model\Employee($db);
-
+                    $employee = new OneHRMS\model\Employee($db);
                     $result = $employee->listAll();
 
                     if ($result->num_rows > 0) {
@@ -60,7 +63,9 @@
                             echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='6' class='text-center'>No employees found</td></tr>";
+                        echo "<tr>
+                        <td colspan='7' class='text-center'>No records found!</td>
+                        </tr>";
                     }
 
                     $db->close();
@@ -70,8 +75,6 @@
         </div>
     </div>
     <?php include_once('partials/footer.php'); ?>
-
-</body>
 </body>
 
 </html>

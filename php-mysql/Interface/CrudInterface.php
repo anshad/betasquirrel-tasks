@@ -1,6 +1,6 @@
 <?php
 
-namespace OneHRMS\Interface;
+namespace OneHRMS\interface;
 
 interface CrudInterface
 {

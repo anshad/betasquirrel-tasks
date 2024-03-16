@@ -1,12 +1,12 @@
 <?php
 
-namespace OneHRMS\Model;
+namespace OneHRMS\model;
 
-require_once 'BaseModel.php';
+require('BaseModel.php');
 require_once 'interface/CrudInterface.php';
 require_once 'trait/ValidationTrait.php';
 
-use OneHRMS\Interface\CrudInterface;
+use OneHRMS\interface\CrudInterface;
 use OneHRMS\trait\ValidationTrait;
 
 class Employee extends BaseModel implements CrudInterface
@@ -14,7 +14,6 @@ class Employee extends BaseModel implements CrudInterface
     use ValidationTrait;
 
     private $table = 'employees';
-
     public $first_name;
     public $last_name;
     public $email;
@@ -29,7 +28,6 @@ class Employee extends BaseModel implements CrudInterface
     public function add()
     {
         $query = "INSERT INTO " . $this->table . " (first_name, last_name, email, salary, department) VALUES (?, ?, ?, ?, ?)";
-
         $stmt = $this->conn->prepare($query);
 
         $this->first_name = htmlspecialchars(strip_tags($this->first_name));
@@ -63,7 +61,6 @@ class Employee extends BaseModel implements CrudInterface
     public function update($id)
     {
         $query = "UPDATE " . $this->table . " SET first_name = ?, last_name = ?, email = ?, salary = ?, department = ? WHERE id = ?";
-
         $stmt = $this->conn->prepare($query);
 
         $this->first_name = htmlspecialchars(strip_tags($this->first_name));
@@ -97,13 +94,10 @@ class Employee extends BaseModel implements CrudInterface
     public function validate($data)
     {
         $errors = [];
-
         $this->validateRequired('first_name', $data['first_name'], $errors);
         $this->validateRequired('last_name', $data['last_name'], $errors);
         $this->validateRequired('email', $data['email'], $errors);
         $this->validateEmail('email', $data['email'], $errors);
-        $this->validateRequired('salary', $data['salary'], $errors);
-        $this->validateRequired('department', $data['department'], $errors);
 
         return $errors;
     }
