@@ -12,3 +12,9 @@ function resetForm() {
   document.getElementById("salary").value = "";
   document.getElementById("department").value = "";
 }
+
+function toggleBetweenInput() {
+  const searchType = document.getElementById("searchType").value;
+  const betweenInput = document.getElementById("betweenValue");
+  betweenInput.style.display = searchType === "between" ? "block" : "none";
+}
