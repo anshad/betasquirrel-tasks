@@ -10,17 +10,12 @@ use OneHRMS\interface\CrudInterface;
 use OneHRMS\trait\ValidationTrait;
 use Exception;
 
-class Employee extends BaseModel implements CrudInterface
+class Department extends BaseModel implements CrudInterface
 {
     use ValidationTrait;
 
-    private $table = 'employees';
-    private $department_table = 'departments';
-    public $first_name;
-    public $last_name;
-    public $email;
-    public $salary;
-    public $department_id;
+    private $table = 'departments';
+    public $name;
 
     public function __construct($db)
     {
@@ -30,12 +25,12 @@ class Employee extends BaseModel implements CrudInterface
     public function add()
     {
         try {
-            $query = 'INSERT INTO ' . $this->table . ' (first_name, last_name, email, salary, department_id) VALUES (?, ?, ?, ?, ?)';
+            $query = 'INSERT INTO ' . $this->table . ' (name) VALUES (?)';
             $stmt = $this->conn->prepare($query);
 
             $this->sanitize();
 
-            $stmt->bind_param('sssii', $this->first_name, $this->last_name, $this->email, $this->salary, $this->department_id);
+            $stmt->bind_param('s', $this->name);
 
             if ($stmt->execute()) {
                 return true;
@@ -51,19 +46,19 @@ class Employee extends BaseModel implements CrudInterface
     public function listAll($page = null, $itemsPerPage = null, $sortBy = null, $sortOrder = 'ASC', $searchField = null, $searchType = null, $searchValue = null, $searchValue2 = null)
     {
         try {
-            $validSortColumns = ['id', 'first_name', 'last_name', 'email', 'salary', 'departments.name'];
+            $validSortColumns = ['id', 'name'];
             $sortOrder = strtoupper($sortOrder) === 'DESC' ? 'DESC' : 'ASC';
 
             if (!in_array($sortBy, $validSortColumns)) {
                 $sortBy = null;
             }
 
-            $query = 'SELECT ' . $this->table . '.*, ' . $this->department_table . '.name as department_name FROM ' . $this->table . ' LEFT JOIN ' . $this->department_table . ' ON department_id = ' . $this->department_table . '.id';
+            $query = 'SELECT * FROM ' . $this->table;
 
             $bindTypes = '';
             $bindValues = [];
 
-            if (!empty($searchField) && !empty($searchValue) && in_array($searchField, ['first_name', 'last_name', 'email', 'salary', 'departments.name'])) {
+            if (!empty($searchField) && !empty($searchValue) && in_array($searchField, ['name'])) {
                 $this->generateSearchQuery($searchType, $searchField, $searchValue, $searchValue2, $bindTypes, $bindValues, $query);
             }
 
@@ -122,7 +117,7 @@ class Employee extends BaseModel implements CrudInterface
     public function update($id)
     {
         try {
-            $query = 'UPDATE ' . $this->table . ' SET first_name = ?, last_name = ?, email = ?, salary = ?, department_id = ? WHERE id = ?';
+            $query = 'UPDATE ' . $this->table . ' SET name = ? WHERE id = ?';
 
             $stmt = $this->conn->prepare($query);
             if (!$stmt) {
@@ -131,7 +126,7 @@ class Employee extends BaseModel implements CrudInterface
 
             $this->sanitize();
 
-            $stmt->bind_param('sssiii', $this->first_name, $this->last_name, $this->email, $this->salary, $this->department_id, $id);
+            $stmt->bind_param('si', $this->name, $id);
             $result = $stmt->execute();
 
             if (!$result) {
@@ -182,10 +177,7 @@ class Employee extends BaseModel implements CrudInterface
     public function validate($data)
     {
         $errors = [];
-        $this->validateRequired('first_name', $data['first_name'], $errors);
-        $this->validateRequired('last_name', $data['last_name'], $errors);
-        $this->validateRequired('email', $data['email'], $errors);
-        $this->validateEmail('email', $data['email'], $errors);
+        $this->validateRequired('name', $data['name'], $errors);
 
         return $errors;
     }
@@ -193,12 +185,12 @@ class Employee extends BaseModel implements CrudInterface
     public function getTotalCount($searchField = null, $searchType = null, $searchValue = null, $searchValue2 = null)
     {
         try {
-            $query = 'SELECT COUNT(*) as total FROM ' . $this->table . ' LEFT JOIN ' . $this->department_table . ' ON department_id = ' . $this->department_table . '.id';
+            $query = 'SELECT COUNT(*) as total FROM ' . $this->table;
 
             $bindTypes = '';
             $bindValues = [];
 
-            if (!empty($searchField) && !empty($searchValue) && in_array($searchField, ['first_name', 'last_name', 'email', 'salary', 'departments.name'])) {
+            if (!empty($searchField) && !empty($searchValue) && in_array($searchField, ['name'])) {
                 $this->generateSearchQuery($searchType, $searchField, $searchValue, $searchValue2, $bindTypes, $bindValues, $query);
             }
 
@@ -226,10 +218,7 @@ class Employee extends BaseModel implements CrudInterface
 
     private function sanitize()
     {
-        $this->first_name = htmlspecialchars(strip_tags($this->first_name));
-        $this->last_name = htmlspecialchars(strip_tags($this->last_name));
-        $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->salary = htmlspecialchars(strip_tags($this->salary));
+        $this->name = htmlspecialchars(strip_tags($this->name));
     }
 
     private function generateSearchQuery($searchType, $searchField, $searchValue, $searchValue2, &$bindTypes, &$bindValues, &$query)

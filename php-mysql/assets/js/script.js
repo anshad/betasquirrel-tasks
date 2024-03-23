@@ -1,16 +1,10 @@
 function confirmDelete() {
-  return confirm("Are you sure you want to delete this employee?");
+  return confirm("Are you sure you want to delete this record?");
 }
 
-function resetForm() {
-  const form = document.getElementById("employee-form");
+function resetForm(formId) {
+  const form = document.getElementById(formId);
   form.reset();
-
-  document.getElementById("first-name").value = "";
-  document.getElementById("last-name").value = "";
-  document.getElementById("email").value = "";
-  document.getElementById("salary").value = "";
-  document.getElementById("department").value = "";
 }
 
 function toggleBetweenInput() {

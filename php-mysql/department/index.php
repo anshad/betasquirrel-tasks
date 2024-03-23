@@ -22,24 +22,24 @@ function generateHrefQuery($page, $searchField, $searchType, $searchValue, $sear
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    <title>One HRMS | Employees</title>
-    <?php include_once ('partials/header.php'); ?>
+    <title>One HRMS | Departments</title>
+    <?php include_once ('../partials/header.php'); ?>
 </head>
 
 <body>
-    <?php include_once ('partials/navbar.php'); ?>
+    <?php include_once ('../partials/navbar.php'); ?>
     <div class="d-flex">
-        <?php include_once ('partials/sidebar.php'); ?>
+        <?php include_once ('../partials/sidebar.php'); ?>
         <div class="container-fluid main-content">
             <div class="row">
                 <div class="col mt-3">
-                    <h2 class="mb-3">Employees</h2>
+                    <h2 class="mb-3">Departments</h2>
                     <hr />
                 </div>
             </div>
             <div class="text-end">
-                <a href="add-employee.php"
-                   class="btn btn-primary btn-sm">Add Employee</a>
+                <a href="add-department.php"
+                   class="btn btn-primary btn-sm">Add Department</a>
             </div>
 
             <div class="row mt-4 mb-2">
@@ -59,24 +59,8 @@ function generateHrefQuery($page, $searchField, $searchType, $searchValue, $sear
                         <div class="input-group">
                             <select class="form-select"
                                     name="searchField">
-                                <option value="first_name"
-                                        <?php echo $searchField === 'first_name' ? 'selected' : ''; ?>>
-                                    First Name
-                                </option>
-                                <option value="last_name"
-                                        <?php echo $searchField === 'last_name' ? 'selected' : ''; ?>>
-                                    Last Name
-                                </option>
-                                <option value="email"
-                                        <?php echo $searchField === 'email' ? 'selected' : ''; ?>>
-                                    Email
-                                </option>
-                                <option value="salary"
-                                        <?php echo $searchField === 'salary' ? 'selected' : ''; ?>>
-                                    Salary
-                                </option>
-                                <option value="departments.name"
-                                        <?php echo $searchField === 'departments.name' ? 'selected' : ''; ?>>
+                                <option value="name"
+                                        <?php echo $searchField === 'name' ? 'selected' : ''; ?>>
                                     Department Name
                                 </option>
                             </select>
@@ -147,61 +131,30 @@ function generateHrefQuery($page, $searchField, $searchType, $searchValue, $sear
                                href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'id', 'desc'); ?>">&darr;</a>
                         </th>
                         <th>
-                            First Name
+                            Department Name
                             <a
-                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'first_name'); ?>">&uarr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'name'); ?>">&uarr;</a>
                             |
                             <a
-                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'first_name', 'desc'); ?>">&darr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'name', 'desc'); ?>">&darr;</a>
                         </th>
-                        <th>
-                            Last Name
-                            <a
-                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'last_name'); ?>">&uarr;</a>
-                            |
-                            <a
-                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'last_name', 'desc'); ?>">&darr;</a>
-                        </th>
-                        <th>
-                            Email
-                            <a
-                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'email'); ?>">&uarr;</a>
-                            |
-                            <a
-                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'email', 'desc'); ?>">&darr;</a>
-                        </th>
-                        <th>
-                            Salary
-                            <a
-                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'salary'); ?>">&uarr;</a>
-                            |
-                            <a
-                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'salary', 'desc'); ?>">&darr;</a>
-                        </th>
-                        <th>
-                            Department
-                            <a
-                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'departments.name'); ?>">&uarr;</a>
-                            |
-                            <a
-                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'departments.name', 'desc'); ?>">&darr;</a>
-                        </th>
+
                         <th class="text-end">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                        require_once ('database/Database.php');
-                        require_once ('model/Employee.php');
+                        require_once ('../database/Database.php');
+                        require_once ('../model/Department.php');
 
                         $itemsPerPage = 10;
 
                         $db = OneHRMS\database\Database::connect();
 
-                        $employee = new OneHRMS\model\Employee($db);
-                        $result = $employee->listAll($page, $itemsPerPage, $sort, $order, $searchField, $searchType, $searchValue, $searchValue2);
+                        $department = new OneHRMS\model\Department($db);
+                        $result = $department->listAll($page, $itemsPerPage, $sort, $order, $searchField, $searchType, $searchValue, $searchValue2);
 
-                        $totalCount = $employee->getTotalCount($searchField, $searchType, $searchValue, $searchValue2);
+                        $totalCount = $department->getTotalCount($searchField, $searchType, $searchValue, $searchValue2);
                         $totalPages = ceil($totalCount / $itemsPerPage);
 
                         $range = 2;
@@ -212,16 +165,12 @@ function generateHrefQuery($page, $searchField, $searchType, $searchValue, $sear
                             while ($row = $result->fetch_object()) {
                                 echo '<tr>';
                                 echo '<td>' . $row->id . '</td>';
-                                echo '<td>' . $row->first_name . '</td>';
-                                echo '<td>' . $row->last_name . '</td>';
-                                echo '<td>' . $row->email . '</td>';
-                                echo '<td>' . $row->salary . '</td>';
-                                echo '<td>' . $row->department_name . '</td>';
+                                echo '<td>' . $row->name . '</td>';
                                 echo "<td class='text-end'>
-                                        <a href='add-employee.php?id=" . $row->id . "' class='btn btn-warning btn-sm'>
+                                        <a href='add-department.php?id=" . $row->id . "' class='btn btn-warning btn-sm'>
                                             Edit
                                         </a>
-                                        <a href='delete-employee.php?id=" . $row->id . "' class='btn btn-danger btn-sm' onclick='return confirmDelete()'>
+                                        <a href='delete-department.php?id=" . $row->id . "' class='btn btn-danger btn-sm' onclick='return confirmDelete()'>
                                             Delete
                                         </a>
                                      </td>";
@@ -269,7 +218,7 @@ function generateHrefQuery($page, $searchField, $searchType, $searchValue, $sear
             </nav>
         </div>
     </div>
-    <?php include_once ('partials/footer.php'); ?>
+    <?php include_once ('../partials/footer.php'); ?>
 </body>
 
 </html>
