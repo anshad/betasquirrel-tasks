@@ -15,10 +15,16 @@ class Database
     public static function connect()
     {
         self::$conn = null;
-        self::$conn = new mysqli(self::$host, self::$username, self::$password, self::$dbName);
 
-        if (self::$conn->connect_error) {
-            die('Connection failed: ' . self::$conn->connect_error);
+        try {
+            self::$conn = new mysqli(self::$host, self::$username, self::$password, self::$dbName);
+
+            if (self::$conn->connect_error) {
+                throw new \Exception('Connection failed: ' . self::$conn->connect_error);
+            }
+        } catch (\Exception $e) {
+            echo 'Error connecting to database: ' . $e->getMessage();
+            exit;
         }
 
         return self::$conn;

@@ -9,6 +9,11 @@ $searchType = isset($_GET['searchType']) ? $_GET['searchType'] : null;
 $searchValue = isset($_GET['searchValue']) ? $_GET['searchValue'] : null;
 
 $searchValue2 = isset($_GET['searchValue2']) ? $_GET['searchValue2'] : null;
+
+function generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, $sortField, $sortOrder = 'asc')
+{
+    return "?sort=$sortField&order=$sortOrder&page=$page&searchField=$searchField&searchType=$searchType&searchValue=" . urlencode($searchValue ? $searchValue : '') . '&searchValue2=' . urlencode($searchValue2 ? $searchValue2 : '') . '';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,16 +45,17 @@ $searchValue2 = isset($_GET['searchValue2']) ? $_GET['searchValue2'] : null;
             <div class="row mt-4 mb-2">
                 <div class="col">
                     <form action=""
-                          method="GET">
+                          method="GET"
+                          id="search-form">
                         <input type="hidden"
                                name="sort"
-                               value="<?= $sort ?>">
+                               value="<?= $sort ?>" />
                         <input type="hidden"
                                name="order"
-                               value="<?= $order ?>">
+                               value="<?= $order ?>" />
                         <input type="hidden"
                                name="page"
-                               value="<?= $page ?>">
+                               value="1" />
                         <div class="input-group">
                             <select class="form-select"
                                     name="searchField">
@@ -135,50 +141,50 @@ $searchValue2 = isset($_GET['searchValue2']) ? $_GET['searchValue2'] : null;
                         <th>
                             ID
                             <a
-                               href="?sort=id&order=asc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&uarr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'id'); ?>">&uarr;</a>
                             |
                             <a
-                               href="?sort=id&order=desc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&darr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'id', 'desc'); ?>">&darr;</a>
                         </th>
                         <th>
                             First Name
                             <a
-                               href="?sort=first_name&order=asc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&uarr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'first_name'); ?>">&uarr;</a>
                             |
                             <a
-                               href="?sort=first_name&order=desc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&darr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'first_name', 'desc'); ?>">&darr;</a>
                         </th>
                         <th>
                             Last Name
                             <a
-                               href="?sort=last_name&order=asc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&uarr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'last_name'); ?>">&uarr;</a>
                             |
                             <a
-                               href="?sort=last_name&order=desc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&darr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'last_name', 'desc'); ?>">&darr;</a>
                         </th>
                         <th>
                             Email
                             <a
-                               href="?sort=email&order=asc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&uarr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'email'); ?>">&uarr;</a>
                             |
                             <a
-                               href="?sort=email&order=desc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&darr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'email', 'desc'); ?>">&darr;</a>
                         </th>
                         <th>
                             Salary
                             <a
-                               href="?sort=salary&order=asc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&uarr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'salary'); ?>">&uarr;</a>
                             |
                             <a
-                               href="?sort=salary&order=desc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&darr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'salary', 'desc'); ?>">&darr;</a>
                         </th>
                         <th>
                             Department
                             <a
-                               href="?sort=department&order=asc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&uarr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'department'); ?>">&uarr;</a>
                             |
                             <a
-                               href="?sort=department&order=desc&page=<?= $page ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>">&darr;</a>
+                               href="<?php echo generateHrefQuery($page, $searchField, $searchType, $searchValue, $searchValue2, 'department', 'desc'); ?>">&darr;</a>
                         </th>
                         <th class="text-end">Actions</th>
                     </tr>
@@ -195,14 +201,14 @@ $searchValue2 = isset($_GET['searchValue2']) ? $_GET['searchValue2'] : null;
                         $employee = new OneHRMS\model\Employee($db);
                         $result = $employee->listAll($page, $itemsPerPage, $sort, $order, $searchField, $searchType, $searchValue, $searchValue2);
 
-                        $totalCount = $employee->getTotalCount();
+                        $totalCount = $employee->getTotalCount($searchField, $searchType, $searchValue, $searchValue2);
                         $totalPages = ceil($totalCount / $itemsPerPage);
 
                         $range = 2;
                         $start = max($page - $range, 1);
                         $end = min($page + $range, $totalPages);
 
-                        if ($result->num_rows > 0) {
+                        if ($result && $result->num_rows > 0) {
                             while ($row = $result->fetch_object()) {
                                 echo '<tr>';
                                 echo '<td>' . $row->id . '</td>';
@@ -235,7 +241,7 @@ $searchValue2 = isset($_GET['searchValue2']) ? $_GET['searchValue2'] : null;
                 <ul class="pagination justify-content-center">
                     <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
                         <a class="page-link"
-                           href="?page=<?= max($page - 1, 1) ?>&sort=<?= $sort ?>&order=<?= $order ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>"
+                           href="?page=<?= max($page - 1, 1) ?>&sort=<?= $sort ?>&order=<?= $order ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue ? $searchValue : '') ?>&searchValue2=<?= urlencode($searchValue2 ? $searchValue2 : '') ?>"
                            aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
@@ -248,13 +254,13 @@ $searchValue2 = isset($_GET['searchValue2']) ? $_GET['searchValue2'] : null;
                     ?>
                     <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
                         <a class="page-link"
-                           href="?page=<?= $i ?>&sort=<?= $sort ?>&order=<?= $order ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>"><?= $i ?></a>
+                           href="?page=<?= $i ?>&sort=<?= $sort ?>&order=<?= $order ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue ? $searchValue : '') ?>&searchValue2=<?= urlencode($searchValue2 ? $searchValue2 : '') ?>"><?= $i ?></a>
                     </li>
                     <?php endfor; ?>
 
                     <li class="page-item <?= ($page >= $totalPages) ? 'disabled' : '' ?>">
                         <a class="page-link"
-                           href="?page=<?= min($page + 1, $totalPages) ?>&sort=<?= $sort ?>&order=<?= $order ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue) ?>&searchValue2=<?= urlencode($searchValue2) ?>"
+                           href="?page=<?= min($page + 1, $totalPages) ?>&sort=<?= $sort ?>&order=<?= $order ?>&searchField=<?= $searchField ?>&searchType=<?= $searchType ?>&searchValue=<?= urlencode($searchValue ? $searchValue : '') ?>&searchValue2=<?= urlencode($searchValue2 ? $searchValue2 : '') ?>"
                            aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
