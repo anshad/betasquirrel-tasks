@@ -25,3 +25,30 @@ body {
 .required-asterisk {
   color: red;
 }
+
+th.sortable {
+  cursor: pointer;
+  position: relative;
+}
+
+th.sortable .sort-icon {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  vertical-align: middle;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+
+th.sortable .sort-icon.asc {
+  border-bottom: 6px solid #000;
+}
+
+th.sortable .sort-icon.desc {
+  border-top: 6px solid #000;
+}
+
+th.sortable:hover {
+  background-color: #f1f1f1;
+}

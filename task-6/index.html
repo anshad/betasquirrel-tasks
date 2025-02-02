@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flexbox Example with Alignments</title>
+    <style>
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+        height: 300px;
+        background-color: lightgray;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .flex-item {
+        background-color: lightblue;
+        padding: 20px;
+        border: 1px solid darkblue;
+      }
+      .flex-item:nth-child(2) {
+        align-self: flex-start;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="flex-item">Flex Item 1</div>
+      <div class="flex-item">Flex Item 2 (Aligned to start)</div>
+      <div class="flex-item">Flex Item 3</div>
+    </div>
+  </body>
+</html>

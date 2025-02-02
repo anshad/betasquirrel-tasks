@@ -33,13 +33,13 @@ class Department extends BaseModel implements CrudInterface
             $stmt->bind_param('s', $this->name);
 
             if ($stmt->execute()) {
-                return true;
+                return ['success' => true, 'message' => 'Department created successfully', 'data' => null];
             } else {
                 throw new Exception('Failed to execute the add operation.');
             }
         } catch (Exception $e) {
             error_log($e->getMessage());
-            return false;
+            return ['success' => false, 'message' => $e->getMessage(), 'data' => null];
         }
     }
 
@@ -81,10 +81,15 @@ class Department extends BaseModel implements CrudInterface
             }
 
             $stmt->execute();
-            return $stmt->get_result();
+            $result = $stmt->get_result();
+            $departments = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt->close();
+
+            return $departments;
         } catch (\mysqli_sql_exception $e) {
             error_log('Database query failed: ' . $e->getMessage());
-            return null;
+            return ['success' => false, 'message' => $e->getMessage(), 'data' => ['departments' => []]];
         }
     }
 
@@ -102,15 +107,18 @@ class Department extends BaseModel implements CrudInterface
                 throw new Exception('Error executing statement: ' . $stmt->error);
             }
 
-            $result = $stmt->get_result()->fetch_assoc();
-            if ($result === null) {
-                throw new Exception('Record not found');
-            }
+            $result = $stmt->get_result();
+            $department = $result->fetch_assoc();
+            $stmt->close();
 
-            return $result;
+            if ($department) {
+                return ['success' => true, 'data' => $department, 'message' => ''];
+            } else {
+                return ['success' => false, 'message' => 'Department not found', 'data' => null];
+            }
         } catch (Exception $e) {
             error_log($e->getMessage());
-            return null;
+            return ['success' => false, 'message' => $e->getMessage(), 'data' => null];
         }
     }
 
@@ -137,11 +145,11 @@ class Department extends BaseModel implements CrudInterface
                 throw new Exception('No rows updated, possible invalid ID or data unchanged.');
             }
 
-            return true;
+            return ['success' => true, 'message' => 'Department updated successfully', 'data' => null];
         } catch (Exception $e) {
             error_log('Update operation failed: ' . $e->getMessage());
 
-            return false;
+            return ['success' => false, 'message' => $e->getMessage(), 'data' => null];
         }
     }
 
@@ -166,11 +174,11 @@ class Department extends BaseModel implements CrudInterface
                 throw new Exception('No rows deleted, possibly invalid ID.');
             }
 
-            return true;
+            return ['success' => true, 'message' => 'Department deleted successfully', 'data' => null];
         } catch (Exception $e) {
             error_log('Delete operation failed: ' . $e->getMessage());
 
-            return false;
+            return ['success' => false, 'message' => $e->getMessage(), 'data' => null];
         }
     }
 
@@ -207,8 +215,13 @@ class Department extends BaseModel implements CrudInterface
                 throw new Exception('Execute failed: ' . $stmt->error);
             }
 
-            $result = $stmt->get_result()->fetch_assoc();
-            return (int) $result['total'];
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+
+            $stmt->close();
+
+            return (int) $row['total'];
         } catch (Exception $e) {
             error_log('Failed to get total count: ' . $e->getMessage());
 
